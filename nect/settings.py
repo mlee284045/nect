@@ -90,6 +90,7 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 
+# LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 
 try:

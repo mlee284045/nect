@@ -12,3 +12,22 @@
     -moz-transition: background .3s ease-in-out;
     transition: background .3s ease-in-out;
 }
+
+/*.nect-login, .nect-profile {*/
+    /*margin-right: 15px;*/
+/*}*/
+
+/*.nect-login, .nect-profile, .nect-logout, .nect-register {*/
+    /*margin-left: 5px;*/
+    /*margin-top: 15px;*/
+    /*cursor: pointer;*/
+/*}*/
+
+#registrationBox label {
+    text-align: right;
+    width: 250px;
+}
+
+input {
+    color: #000;
+}

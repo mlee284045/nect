@@ -1,0 +1,12 @@
+<form id="user_register" method="post" action="">
+    {% csrf_token %}
+    {#        {{ form.as_p }}#}
+    <div id="registrationBox">
+        {% for field in form %}
+            <p><span>{{ field.label_tag }}</span> {{ field }}</p>
+        {% endfor %}
+    </div>
+
+
+    <input value="Submit" type="submit">
+</form>

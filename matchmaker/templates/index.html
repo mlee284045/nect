@@ -14,16 +14,18 @@
     <title>'Nect</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../../static/css/grayscale.css" rel="stylesheet">
+    <link href="{% static 'css/grayscale.css' %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../../static/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'font-awesome-4.1.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="../../static/css/custom.css" rel='stylesheet' type="text/css">
+
+    <!-- Personal Changes -->
+    <link href="{% static 'css/custom.css' %}" rel='stylesheet' type="text/css">
 
 </head>
 
@@ -49,19 +51,19 @@
                         <a href="#page-top"></a>
                     </li>
                     {% if user.is_authenticated %}
-                    <li>
-                        <a class="page-scroll" href="#about">Profile</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">Logout</a>
-                    </li>
+                        <li>
+                            <a class="page-scroll nect-profile" href="#about">Profile</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll nect-logout" href="#about">Logout</a>
+                        </li>
                     {% else %}
-                    <li>
-                        <a class="page-scroll" href="#contact">Login</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Register</a>
-                    </li>
+                        <li>
+                            <a class="page-scroll nect-login" href="#about">Login</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll nect-register" href="#about">Register</a>
+                        </li>
                     {% endif %}
                 </ul>
             </div>
@@ -78,12 +80,15 @@
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">'Nect</h1>
                         <p class="intro-text">'Nect with your soulmate<br></p>
-                        <a href="#about" class="btn btn-original page-scroll">
-                            <i class="fa animated">Login</i>
-                        </a><br>
-                        <a href="#about" class="btn btn-original page-scroll">
-                            <i class="fa animated">Register</i>
-                        </a>
+                        {% if user.is_authenticated %}
+                        {% else %}
+                            <a href="#about" class="btn btn-original page-scroll">
+                                <i class="fa animated nect-login">Login</i>
+                            </a><br>
+                            <a href="#about" class="btn btn-original page-scroll">
+                                <i class="fa animated nect-register">Register</i>
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -93,14 +98,15 @@
     <!-- About Section -->
     <section id="about" class="container content-section text-center">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>About 'Nect</h2>
-                <p>'Nect is a dating service that aims to 'nect somebody with someone, even a yeti.
-                    We literally take the con out of connect.
-                    We are a revolutionary open-source visionary synergistic entrepreneurial collaboration taking an innovative game-changing lean paradigm-shifting approach to dating.
-                    'Nect's goal is to become the pinnacle of web dating.</p>
-
-            </div>
+            {% block content %}
+                <div class="col-lg-8 col-lg-offset-2" id="nect-content">
+                    <h2>About 'Nect</h2>
+                    <p>'Nect is a dating service that aims to 'nect somebody with someone, even a yeti.
+                        We have simply taken the con out of connect.
+                        We are a revolutionary open-source visionary synergistic entrepreneurial collaboration taking an innovative game-changing lean paradigm-shifting approach to dating.
+                        'Nect's goal is to become the pinnacle of web dating.</p>
+                </div>
+            {% endblock content %}
         </div>
     </section>
 
@@ -113,16 +119,16 @@
     </footer>
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="../../static/js/jquery-1.11.0.js"></script>
+    <script src="{% static 'js/jquery-1.11.0.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../../static/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="../../static/js/jquery.easing.min.js"></script>
+    <script src="{% static 'js/jquery.easing.min.js' %}"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../../static/js/grayscale.js"></script>
+    <script src="{% static 'js/grayscale.js' %}"></script>
 
     <script src="{% static 'js/nect.js' %}"></script>
 

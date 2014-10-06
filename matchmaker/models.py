@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class Passion(models.Model):
-    pass
     name = models.CharField(max_length=40)
     details = models.TextField(null=True, blank=True)
 
@@ -10,10 +9,12 @@ class Passion(models.Model):
         return self.name
 
 class Person(User):
-    pass
-    gender = models.BooleanField(default=True)  # true will be male and false will be female
+    gender = models.NullBooleanField(null=True)  # true will be male and false will be female
+    location = models.CharField(blank=True, max_length=60)
+    bio = models.TextField(blank=True, )
     age = models.PositiveSmallIntegerField(null=True, blank=True)
     account = models.BooleanField(default=False)  # true means paid account and false means unpaid account
+    # also need to make sure that the user can't change this by themselves in forms
     passions = models.ManyToManyField(Passion, related_name='users')
 
     def removePassion(self, name):
@@ -25,7 +26,6 @@ class Person(User):
 
 
 class Photo(models.Model):
-    pass
     title = models.CharField(max_length=120)
     profile = models.BooleanField(default=False)
     img = models.URLField()
@@ -36,7 +36,6 @@ class Photo(models.Model):
 
 
 class Like(models.Model):
-    pass
     user_key = models.PositiveIntegerField()
     user = models.ForeignKey(User, related_name='likes')
 
