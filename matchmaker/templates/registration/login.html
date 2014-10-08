@@ -1,8 +1,15 @@
-<form id="user_login" method="post" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input value="Log in" type="submit">
-</form>
-<br>
-<p>Forgot your password? <a href="{% url 'password_reset' %}">Reset</a></p>
-<p>Not a member? <a href="{% url 'register' %}">Register!</a></p>
+{% extends 'index.html' %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+    <form id="user_login" method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input value="Log in" type="submit">
+    </form>
+    <br>
+    <p>Forgot your password? <a href="{% url 'password_reset' %}">Reset</a></p>
+    <p>Not a member? <a href="{% url 'register' %}">Register!</a></p>
+{% endblock content %}

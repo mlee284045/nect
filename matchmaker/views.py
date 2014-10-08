@@ -1,7 +1,9 @@
+from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, redirect
 
 # Create your views here.
 from matchmaker.forms import PersonForm
+import stripe
 from nect import settings
 
 
@@ -10,27 +12,33 @@ def home(request):
 
 
 def login(request):
-    return render_to_response(request, 'login.html', )
+    return render(request, 'login.html')
 
 
 def logout(request):
-    return render_to_response(request, 'logout.html', )
+    return render(request, 'logout.html')
 
 
 def profile(request):
-    print request.user
-    return render_to_response(request, 'profile.html', )
+    return render(request, 'profile.html')
 
+
+def upgrade(request):
+    return render(request, 'upgrade.html')
 
 def register(request):
     print 'worked till here'
     if request.method == 'POST':
         form = PersonForm(request.POST)
         if form.is_valid():
+            print form
             current_user = form.save()
+            current_user.set_default()
+            if request.is_ajax():
+                return HttpResponse('OK')
+            else:
+                pass
             # current_user.email_user('Welcome!', 'Thanks for joining our website.', settings.DEFAULT_FROM_EMAIL)
-
-            return redirect('profile')
     else:
         form = PersonForm()
         print 'got the empty form'
@@ -38,7 +46,9 @@ def register(request):
 
 
 def view_all(request):
-    pass
+
+
+    return render(request, 'view_all.html')
 
 
 def view_profile(request, profile_id):

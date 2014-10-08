@@ -29,13 +29,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'matchmaker',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'matchmaker',
+
     'debug_toolbar',
 )
 
@@ -81,10 +82,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+STRIPE_ID = 'ca_4uSm5j6ZgD3yKP0HIb6aAuLQTTcLPIzn'
+STRIPE_API_KEY = 'sk_test_yzNuXFWj6k1c8OoHfFS2DELJ'
+
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, '..'))
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, "static", *MEDIA_URL.strip("/").split("/"))
 
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),

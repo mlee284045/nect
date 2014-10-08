@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     url(r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete', name='password_reset_complete'),
 
     url(r'^register/$', 'matchmaker.views.register', name='register'),
-
+    url(r'^upgrade/$', 'matchmaker.views.upgrade', name='upgrade'),
     url(r'^profile/$', 'matchmaker.views.profile', name='profile'),
     url(r'^view/$', 'matchmaker.views.view_all', name='view_all'),
     url(r'^view/(?P<profile_id>\d+)', 'matchmaker.views.view_profile', name='view_profile'),

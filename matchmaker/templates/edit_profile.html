@@ -1,0 +1,14 @@
+<h1>Edit Profile</h1>
+{# May need to make this in forms.py #}
+<form>
+    {% csrf_token %}
+    <span>Gender <input type="checkbox" value="gender"></span>
+    <span>Location <input type="text"></span>
+    <span>Short Bio: <input type="text"></span>
+    <span>Age: <input type="number"></span>
+    <span>Account: {% if user.account %}Premium{% else %}Regular <button>Upgrade to Premium</button>{% endif %}</span>
+    <span>Passions: <input type="radio"></span>
+    <span>Profile: <input type="image"></span>
+    <input type="submit" value="submit">
+</form>
+

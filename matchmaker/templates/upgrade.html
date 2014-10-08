@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+    <p>By upgrading, you will be able to chat and
+        matched with people of similar interests.</p>
+    <form action="" method="POST">
+    {% csrf_token %}
+        <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_4DwC0r2mn7ZtNYk6nstHxJSq"
+                data-amount="2000"
+                data-name="Demo Site"
+                data-description="2 widgets ($20.00)"
+                data-image="{% static 'img/Person-512.png' %}">
+        </script>
+    </form>
+
+{% endblock content %}

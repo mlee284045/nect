@@ -2,17 +2,15 @@ $(document).ready(function() {
     var container = $('#nect-content');
     console.log('success');
 
+
     function getPage(pageName) {
         $.ajax({
-            url: '/'+pageName+'/',
+            url: '/' + pageName + '/',
             type: 'GET',
             success: function(res) {
-                console.log('page success');
-                console.log(res);
                 container.html(res)
             },
             error: function(e) {
-                console.log('page error');
                 console.log(e);
             }
         })
@@ -74,21 +72,33 @@ $(document).ready(function() {
     });
 
     $('.nect-profile').click(function() {
-        console.log('clicked profile');
         getPage('profile');
     });
 
-    $('#user_register').submit(function(evt) {
-        alert('submitting');
-        console.log(evt);
-        evt.preventDefault();
-//        registerUser();
+
+
+    $(document).ajaxComplete(function() {
+        $('#user_register').submit(function(evt) {
+            var userData = {
+                'username': evt.target[1].value,
+                'email': evt.target[2].value,
+                'password1': evt.target[3].value,
+                'password2': evt.target[4].value
+                };
+            evt.preventDefault();
+            registerUser(userData);
+        });
+//        $('#user_login').submit(function(evt) {
+//            alert('working?');
+//            console.log(userInfo);
+//            var userData = {
+//                'username': evt.target[1].value,
+//                'password': evt.target[2].value
+//                };
+//            console.log(evt);
+//            evt.preventDefault();
+//            loginUser(userData);
+//        });
     });
 
-    $('#user_login').submit(function(evt) {
-        alert('working?');
-        console.log(evt);
-        evt.preventDefault();
-//        loginUser();
-    });
 });

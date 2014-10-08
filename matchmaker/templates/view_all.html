@@ -1,0 +1,7 @@
+{% for person in people %}
+<div>
+    <p>Name: {{ person.username }}</p>
+    <img src="{{ person.get_profile_url }}">
+    <p>Location: {{ person.location }}</p>
+</div>
+{% endfor %}

@@ -38,8 +38,8 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-play-circle"></i>  <span class="light">'Nect</span>
+                <a class="navbar-brand page-scroll" href="{% url 'home' %}">
+                    <i class="fa fa-play-circle"></i><span class="light"> 'Nect</span>
                 </a>
             </div>
 
@@ -51,18 +51,24 @@
                         <a href="#page-top"></a>
                     </li>
                     {% if user.is_authenticated %}
+                        {% if user.account %}
+                        {% else %}
                         <li>
-                            <a class="page-scroll nect-profile" href="#about">Profile</a>
+                            <a class="page-scroll nect-upgrade" href="#">Upgrade</a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a class="page-scroll nect-profile" href="#">Profile</a>
                         </li>
                         <li>
-                            <a class="page-scroll nect-logout" href="#about">Logout</a>
+                            <a class="page-scroll nect-logout" href="{% url 'logout' %}">Logout</a>
                         </li>
                     {% else %}
                         <li>
-                            <a class="page-scroll nect-login" href="#about">Login</a>
+                            <a class="page-scroll nect-login" href="{% url 'login' %}">Login</a>
                         </li>
                         <li>
-                            <a class="page-scroll nect-register" href="#about">Register</a>
+                            <a class="page-scroll nect-register" href="{% url 'register' %}">Register</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -78,22 +84,25 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">'Nect</h1>
-                        <p class="intro-text">'Nect with your soulmate<br></p>
-                        {% if user.is_authenticated %}
-                        {% else %}
-                            <a href="#about" class="btn btn-original page-scroll">
-                                <i class="fa animated nect-login">Login</i>
-                            </a><br>
-                            <a href="#about" class="btn btn-original page-scroll">
-                                <i class="fa animated nect-register">Register</i>
-                            </a>
-                        {% endif %}
+                        {% block header %}
+                            <h1 class="brand-heading">'Nect</h1>
+                            <p class="intro-text">'Nect with your soulmate<br></p>
+                            {% if user.is_authenticated %}
+                            {% else %}
+                                <a href="#about" class="btn btn-original page-scroll">
+                                    <i class="fa animated nect-login">Login</i>
+                                </a><br>
+                                <a href="#about" class="btn btn-original page-scroll">
+                                    <i class="fa animated nect-register">Register</i>
+                                </a>
+                            {% endif %}
+                        {% endblock header %}
                     </div>
                 </div>
             </div>
         </div>
     </header>
+
 
     <!-- About Section -->
     <section id="about" class="container content-section text-center">
